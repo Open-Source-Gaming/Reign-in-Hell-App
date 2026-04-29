@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'astro/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: Build
+    needs: test
+    uses: ./.github/workflows/build.yml
+    with:
+      upload-artifact: true
+    secrets: inherit
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: build
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: astro-dist
+          path: dist
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          command: deploy
+
+      - name: Cleanup artifact
+        if: always()
+        run: rm -rf dist

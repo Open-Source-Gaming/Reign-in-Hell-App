@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      upload-artifact:
+        description: 'Upload build artifact for deployment'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build:
+    name: Build Astro
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          cache-dependency-path: astro/yarn.lock
+
+      - name: Install dependencies
+        working-directory: astro
+        run: yarn install --frozen-lockfile
+
+      - name: Build site
+        working-directory: astro
+        env:
+          # Uncomment when Ghost CMS is enabled.
+          # GHOST_URL: ${{ secrets.GHOST_URL }}
+          # GHOST_CONTENT_API_KEY: ${{ secrets.GHOST_CONTENT_API_KEY }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
+        run: yarn build
+
+      - name: Upload build artifact
+        if: inputs.upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: astro-dist
+          path: astro/dist
+          retention-days: 1

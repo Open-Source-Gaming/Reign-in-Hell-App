@@ -1,0 +1,12 @@
+name = "{{PROJECT_NAME}}"
+compatibility_date = "2026-04-03"
+main = "worker.ts"
+
+[assets]
+directory = "./astro/dist"
+binding = "ASSETS"
+not_found_handling = "404-page"
+
+# Uncomment when Ghost CMS is enabled (Q12.4 = Ghost).
+# [vars]
+# GHOST_URL = "https://ghost.{{DOMAIN}}"

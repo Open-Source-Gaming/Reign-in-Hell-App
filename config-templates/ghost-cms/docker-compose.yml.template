@@ -1,0 +1,50 @@
+services:
+  {{PROJECT_PREFIX}}-ghost:
+    image: ghost:5-alpine
+    container_name: {{PROJECT_PREFIX}}-ghost
+    restart: unless-stopped
+    depends_on:
+      {{PROJECT_PREFIX}}-db:
+        condition: service_healthy
+    environment:
+      url: ${GHOST_URL}
+      database__client: mysql
+      database__connection__host: {{PROJECT_PREFIX}}-db
+      database__connection__user: ${MYSQL_USER}
+      database__connection__password: ${MYSQL_PASSWORD}
+      database__connection__database: ${MYSQL_DATABASE}
+      mail__transport: ${MAIL_TRANSPORT:-SMTP}
+      mail__options__service: ${MAIL_SERVICE:-Mailgun}
+      mail__options__auth__user: ${MAIL_USER}
+      mail__options__auth__pass: ${MAIL_PASS}
+    volumes:
+      - ./ghost/content:/var/lib/ghost/content
+    networks:
+      - default
+      - personal
+
+  {{PROJECT_PREFIX}}-db:
+    image: mysql:8
+    container_name: {{PROJECT_PREFIX}}-db
+    restart: unless-stopped
+    env_file:
+      - ./ghost/.env
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "mysql -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} $${MYSQL_DATABASE} -e 'SELECT 1'",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    volumes:
+      - ./ghost/data/mysql:/var/lib/mysql
+    networks:
+      - default
+
+networks:
+  default:
+  personal:
+    external: true

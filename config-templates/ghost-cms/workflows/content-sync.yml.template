@@ -1,0 +1,61 @@
+name: Content Sync
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: content-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check-ghost:
+    name: Check Ghost for Updates
+    runs-on: self-hosted
+    outputs:
+      has-changes: ${{ steps.check.outputs.has-changes }}
+    steps:
+      - name: Check Ghost API for updates
+        id: check
+        env:
+          GHOST_URL: ${{ secrets.GHOST_URL }}
+          GHOST_CONTENT_API_KEY: ${{ secrets.GHOST_CONTENT_API_KEY }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          CACHE_FILE: /tmp/ghost-content-hash
+        run: |
+          CURRENT_HASH=$(curl -sf \
+            ${CF_ACCESS_CLIENT_ID:+-H "CF-Access-Client-Id: ${CF_ACCESS_CLIENT_ID}"} \
+            ${CF_ACCESS_CLIENT_SECRET:+-H "CF-Access-Client-Secret: ${CF_ACCESS_CLIENT_SECRET}"} \
+            "${GHOST_URL}/ghost/api/content/posts/?key=${GHOST_CONTENT_API_KEY}&limit=all&fields=id,updated_at" \
+            | sha256sum | cut -d' ' -f1)
+
+          if [ -z "$CURRENT_HASH" ]; then
+            echo "Failed to fetch Ghost content"
+            echo "has-changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          if [ -f "$CACHE_FILE" ]; then
+            CACHED_HASH=$(cat "$CACHE_FILE")
+            if [ "$CURRENT_HASH" = "$CACHED_HASH" ]; then
+              echo "No Ghost content changes detected"
+              echo "has-changes=false" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
+          echo "$CURRENT_HASH" > "$CACHE_FILE"
+          echo "Ghost content has changed."
+          echo "has-changes=true" >> $GITHUB_OUTPUT
+
+  trigger-deploy:
+    name: Trigger Deploy
+    needs: [check-ghost]
+    if: needs.check-ghost.outputs.has-changes == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

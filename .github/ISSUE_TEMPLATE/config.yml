@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/YOUR_ORG/YOUR_REPO/tree/main/docs
+    about: Check the documentation before filing an issue.
+  - name: Security Vulnerability
+    url: https://github.com/YOUR_ORG/YOUR_REPO/blob/main/SECURITY.md
+    about: Report security vulnerabilities privately. Do not use public issues.

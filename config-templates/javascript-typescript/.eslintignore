@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+.nuxt/
+.output/
+out/
+
+# Cache
+.cache/
+.parcel-cache/
+.vite/
+
+# Environment files
+.env*
+
+# Logs
+*.log
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+coverage/
+.nyc_output/
+
+# Minified files
+*.min.js
+*.min.css
+*.bundle.js
+
+# Configuration files
+*.config.js
+*.config.ts
+next.config.js
+vite.config.js
+webpack.config.js

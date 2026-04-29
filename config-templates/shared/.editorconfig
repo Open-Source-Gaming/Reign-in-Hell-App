@@ -1,0 +1,53 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{js,jsx,ts,tsx,mjs,cjs}]
+indent_style = space
+indent_size = 2
+
+[*.{py,pyi}]
+indent_style = space
+indent_size = 4
+
+[*.{json,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.{md,mdx}]
+trim_trailing_whitespace = false
+indent_size = 2
+
+[*.{toml,ini}]
+indent_style = space
+indent_size = 2
+
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[*.go]
+indent_style = tab
+indent_size = 4
+
+[*.{rs,rust}]
+indent_style = space
+indent_size = 4
+
+[*.{cs,vb}]
+indent_style = space
+indent_size = 4
+
+[*.{xml,xaml,csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_style = space
+indent_size = 2

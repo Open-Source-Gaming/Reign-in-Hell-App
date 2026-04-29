@@ -1,0 +1,21 @@
+# Ghost CMS targets.
+# Append to the project Makefile.
+
+DOCKER_COMPOSE ?= docker compose --env-file ./ghost/.env
+DOCKER_COMPOSE_PROD = $(DOCKER_COMPOSE) -f docker-compose.yml
+
+dev-ghost:
+	$(DOCKER_COMPOSE) up -d {{PROJECT_PREFIX}}-ghost {{PROJECT_PREFIX}}-db
+
+deploy-ghost:
+	$(DOCKER_COMPOSE_PROD) pull
+	$(DOCKER_COMPOSE_PROD) up -d
+
+restart-ghost:
+	$(DOCKER_COMPOSE_PROD) restart {{PROJECT_PREFIX}}-ghost
+
+logs-ghost:
+	$(DOCKER_COMPOSE) logs -f {{PROJECT_PREFIX}}-ghost
+
+logs-db:
+	$(DOCKER_COMPOSE) logs -f {{PROJECT_PREFIX}}-db

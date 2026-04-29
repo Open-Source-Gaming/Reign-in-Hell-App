@@ -1,0 +1,80 @@
+name: Documentation Check
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "*.md"
+      - ".claude/**"
+
+jobs:
+  check-docs:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking for broken internal markdown links..."
+          broken=0
+          while IFS= read -r file; do
+            # Extract markdown links like [text](path.md) and [text](path.md#anchor)
+            grep -oP '\[.*?\]\(\K[^)]+' "$file" 2>/dev/null | while IFS= read -r link; do
+              # Skip external links, anchors-only, and mailto
+              if echo "$link" | grep -qP '^(https?://|mailto:|#)'; then
+                continue
+              fi
+              # Remove anchor from link
+              filepath=$(echo "$link" | sed 's/#.*//')
+              if [ -z "$filepath" ]; then
+                continue
+              fi
+              # Resolve relative to the file's directory
+              dir=$(dirname "$file")
+              resolved="$dir/$filepath"
+              if [ ! -f "$resolved" ] && [ ! -d "$resolved" ]; then
+                echo "::warning file=$file::Broken link: $link (resolved to $resolved)"
+                broken=$((broken + 1))
+              fi
+            done
+          done < <(find . -name '*.md' -not -path './.git/*' -not -path './node_modules/*')
+          if [ "$broken" -gt 0 ]; then
+            echo "::warning::Found $broken broken internal link(s)"
+          fi
+
+      - name: Check for SCAFFOLDED markers
+        run: |
+          echo "Files still scaffolded:"
+          grep -rl "SCAFFOLDED" docs/ --include="*.md" || echo "None found."
+
+      - name: Check taxonomy compliance
+        run: |
+          echo "Checking for files outside the taxonomy..."
+          # List docs files and compare against known taxonomy
+          find docs/ -name '*.md' -maxdepth 1 | sort > /tmp/actual-docs.txt
+          echo "Top-level docs files found:"
+          cat /tmp/actual-docs.txt
+
+      - name: Check for em dashes
+        run: |
+          echo "Checking for em dashes in documentation..."
+          if grep -rn '—' docs/ --include="*.md" *.md .claude/ --include="*.md" 2>/dev/null; then
+            echo "::error::Em dashes found in documentation. Use commas, periods, semicolons, or parentheses instead."
+            exit 1
+          else
+            echo "No em dashes found."
+          fi
+
+      - name: Check for emojis
+        run: |
+          echo "Checking for emojis in documentation and code..."
+          # Check for common emojis using literal characters
+          if grep -rn "🚀\|🤖\|✅\|❌\|⚠️\|📝\|📁\|🔧\|🏗️\|🎯\|🔍\|💡\|🌟\|⭐\|😀\|😃\|😄\|😁\|😆\|😅\|🤣\|😂\|🙂\|🙃\|😉\|😊\|😇\|🥰\|😍\|🤩\|😘\|😗\|☺️\|😚\|😙\|🥲\|😋\|😛\|😜\|🤪\|😝\|🤑\|🤗\|🤭\|🤫\|🤔\|🤐\|🤨\|😐\|😑\|😶\|😏\|😒\|🙄\|😬\|🤥\|😔\|😪\|🤤\|😴\|😷\|🤒\|🤕\|🤢\|🤮\|🤧\|🥵\|🥶\|🥴\|😵\|🤯\|🤠\|🥳\|🥸\|😎\|🤓\|🧐\|😕\|😟\|🙁\|☹️\|😮\|😯\|😲\|😳\|🥺\|😦\|😧\|😨\|😰\|😥\|😢\|😭\|😱\|😖\|😣\|😞\|😓\|😩\|😫\|🥱\|😤\|😡\|😠\|🤬\|😈\|👿\|💀\|☠️" --include="*.md" --include="*.js" --include="*.ts" --include="*.py" --include="*.json" . 2>/dev/null; then
+            echo "::error::Emojis found in files. Please remove them according to project policy."
+            exit 1
+          else
+            echo "No emojis found."
+          fi

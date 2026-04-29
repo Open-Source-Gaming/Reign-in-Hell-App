@@ -1,0 +1,10 @@
+# Local Cloudflare Worker development secrets.
+# Copy to .dev.vars and fill in real values. .dev.vars is gitignored.
+
+# Turnstile secret key.
+# Use the always-pass test key for local dev: 1x0000000000000000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# CF Access Service Token (only needed after CF Access is enabled on ghost.{{DOMAIN}}).
+# CF_ACCESS_CLIENT_ID=
+# CF_ACCESS_CLIENT_SECRET=

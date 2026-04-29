@@ -1,0 +1,81 @@
+name: Deploy Ghost
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - development
+          - production
+
+concurrency:
+  group: deploy-ghost
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Ghost CMS
+    runs-on: [self-hosted, Linux, X64]
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Write ghost/.env from secrets
+        env:
+          GHOST_URL: ${{ secrets.GHOST_URL }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_USER: ${{ vars.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ vars.MYSQL_DATABASE }}
+          MAIL_TRANSPORT: ${{ vars.MAIL_TRANSPORT }}
+          MAIL_SERVICE: ${{ vars.MAIL_SERVICE }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+        run: |
+          mkdir -p /srv/{{PROJECT_NAME}}/ghost
+          cat > /srv/{{PROJECT_NAME}}/ghost/.env << EOF
+          GHOST_URL=${GHOST_URL}
+          MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          MYSQL_USER=${MYSQL_USER}
+          MYSQL_PASSWORD=${MYSQL_PASSWORD}
+          MYSQL_DATABASE=${MYSQL_DATABASE}
+          MAIL_TRANSPORT=${MAIL_TRANSPORT:-SMTP}
+          MAIL_SERVICE=${MAIL_SERVICE:-Mailgun}
+          MAIL_USER=${MAIL_USER}
+          MAIL_PASS=${MAIL_PASS}
+          EOF
+
+      - name: Sync files to deploy directory
+        run: |
+          mkdir -p /srv/{{PROJECT_NAME}}/ghost/content
+          mkdir -p /srv/{{PROJECT_NAME}}/ghost/data/mysql
+          rsync -av docker-compose.yml /srv/{{PROJECT_NAME}}/
+          rsync -av --exclude='content/' --exclude='data/' --exclude='.env' \
+            ghost/ /srv/{{PROJECT_NAME}}/ghost/
+
+      - name: Create Docker network if needed
+        run: docker network create personal 2>/dev/null || true
+
+      - name: Deploy Ghost and MySQL
+        working-directory: /srv/{{PROJECT_NAME}}
+        run: |
+          docker compose --env-file ./ghost/.env -f docker-compose.yml pull
+          docker compose --env-file ./ghost/.env -f docker-compose.yml up -d
+
+      - name: Wait for health check
+        working-directory: /srv/{{PROJECT_NAME}}
+        run: |
+          echo "Waiting for MySQL health check..."
+          timeout 120 bash -c 'until [ "$(docker inspect --format="{{.State.Health.Status}}" {{PROJECT_PREFIX}}-db 2>/dev/null)" = "healthy" ]; do sleep 5; done'
+          echo "MySQL is healthy"
+          echo "Checking Ghost is responding..."
+          timeout 60 bash -c 'until docker exec {{PROJECT_PREFIX}}-ghost nc -z localhost 2368 2>/dev/null; do sleep 5; done'
+          echo "Ghost CMS is running"

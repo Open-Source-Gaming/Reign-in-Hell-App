@@ -1,0 +1,47 @@
+{
+  "recommendations": [
+    // Essential formatting and linting
+    "esbenp.prettier-vscode",
+    "ms-python.black-formatter",
+    "charliermarsh.ruff",
+    "ms-python.flake8",
+    "ms-python.mypy-type-checker",
+    "ms-vscode.vscode-eslint",
+
+    // Language support
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "bradlc.vscode-tailwindcss",
+    "rust-lang.rust-analyzer",
+    "golang.go",
+    "ms-dotnettools.csharp",
+
+    // EditorConfig support
+    "editorconfig.editorconfig",
+
+    // Git and version control
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // Markdown support
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+
+    // JSON and YAML
+    "redhat.vscode-yaml",
+
+    // Development tools
+    "christian-kohler.path-intellisense",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-vscode.vscode-json"
+  ],
+  "unwantedRecommendations": [
+    // Avoid conflicting formatters
+    "ms-python.autopep8",
+    "ms-python.isort",
+
+    // Avoid deprecated extensions
+    "hookyqr.beautify",
+    "vscode.typescript-language-features"
+  ]
+}

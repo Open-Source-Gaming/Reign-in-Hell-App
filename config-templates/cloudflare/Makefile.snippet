@@ -1,0 +1,17 @@
+# Cloudflare Worker / Pages targets.
+# Append to the project Makefile.
+
+# Worker local dev. Run alongside dev-astro (or your SSG dev server) for /api/* testing.
+dev-worker:
+	mkdir -p astro/dist
+	npx wrangler dev --port 8787
+
+# Full local preview: build the static site then serve via Worker.
+preview-worker:
+	$(MAKE) -C astro build
+	npx wrangler dev --port 8787
+
+# Production deploy.
+deploy:
+	$(MAKE) -C astro build
+	cd astro && npx wrangler pages deploy dist --project-name={{PROJECT_NAME}}

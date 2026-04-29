@@ -1,0 +1,18 @@
+# CODEOWNERS
+# This file defines code ownership for pull request reviews.
+# Update this file during project initialization with actual team members.
+#
+# Format: <pattern> <owner> [<owner>...]
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @your-org/team-leads
+
+# Documentation
+docs/ @your-org/team-leads
+CLAUDE.md @your-org/team-leads
+replit.md @your-org/team-leads
+
+# CI/CD and config
+.github/ @your-org/devops
+.claude/ @your-org/team-leads
