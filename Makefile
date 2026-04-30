@@ -18,8 +18,6 @@ setup: ## Initial project setup (run once after git clone)
 	@which pnpm > /dev/null || (echo "Installing pnpm..." && npm install -g pnpm)
 	@echo "Installing dependencies..."
 	@pnpm install
-	@echo "Checking Expo CLI availability..."
-	@pnpm dlx expo --version > /dev/null
 	@echo "Setup complete! Run 'make start' to begin development."
 
 .PHONY: install
@@ -221,8 +219,7 @@ bundle-analyze: ## Analyze bundle size
 
 .PHONY: clear-cache
 clear-cache: ## Clear all caches (Expo, Metro, etc.)
-	pnpm start --clear
-	expo r -c
+	pnpm exec expo start --clear
 
 # =============================================================================
 # Git and Development Workflow
@@ -269,7 +266,7 @@ status: ## Show project and development status
 	@echo "=== Reign in Hell Companion Status ==="
 	@echo "Node.js version: $$(node --version)"
 	@echo "pnpm version: $$(pnpm --version)"
-	@echo "Expo CLI version: $$(expo --version)"
+	@echo "Expo CLI version: $$(pnpm exec expo --version)"
 	@echo ""
 	@echo "Dependencies:"
 	@pnpm list --depth=0 2>/dev/null || echo "Run 'make install' to install dependencies"
@@ -281,10 +278,10 @@ status: ## Show project and development status
 doctor: ## Run development environment health check
 	@echo "=== Development Environment Health Check ==="
 	@echo "Checking required tools..."
-	@which node > /dev/null && echo "✓ Node.js installed" || echo "✗ Node.js not found"
-	@which pnpm > /dev/null && echo "✓ pnpm installed" || echo "✗ pnpm not found"
-	@which expo > /dev/null && echo "✓ Expo CLI installed" || echo "✗ Expo CLI not found"
-	@which git > /dev/null && echo "✓ Git installed" || echo "✗ Git not found"
+	@which node > /dev/null && echo "  Node.js installed" || echo "  Node.js not found"
+	@which pnpm > /dev/null && echo "  pnpm installed" || echo "  pnpm not found"
+	@pnpm exec expo --version > /dev/null 2>&1 && echo "  Expo CLI installed" || echo "  Expo CLI not found - run 'make install'"
+	@which git > /dev/null && echo "  Git installed" || echo "  Git not found"
 	@echo ""
 	@echo "Checking project setup..."
 	@test -f package.json && echo "✓ package.json exists" || echo "✗ package.json not found"

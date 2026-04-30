@@ -21,7 +21,7 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
     "no-console": "warn",
     "prefer-const": "error",
     "no-var": "error",

@@ -14,24 +14,12 @@ This is an **unofficial fan tool** for the Reign in Hell tabletop miniature game
 
 **Attribution**: Reign in Hell is published by Snarling Badger Studios. This companion app is created by fans, for fans, and respects the intellectual property of the original creators.
 
-## What This Template Provides
-
-- **Markdown-driven development**: All project context lives in structured documentation.
-- **Strict documentation taxonomy**: Controlled categories under `docs/` with rules for expansion.
-- **Initialization questionnaire**: Guided setup that populates all configuration and context files.
-- **ADR support**: Architecture Decision Records from day one.
-- **Bidirectional Notion sync**: Planning in Notion, implementation in the repo, changes synced both ways.
-- **Granular feature documentation**: Per-feature directories with overview, requirements, UI, API, data, tests, edge cases, and changelog.
-- **Claude Code integration**: Rules, slash commands, and MCP configuration for Claude Code.
-- **Replit integration**: Context file and deployment support for Replit Agent.
-- **GitHub workflows**: PR templates, issue templates, and documentation validation CI.
-
 ## Quick Start
 
 1. Clone this repository
 2. Run `make setup` to install dependencies and tools
 3. Run `make start` to start the development server
-4. For mobile: Download Expo Go app and scan the QR code
+4. For mobile: Download Expo Go and scan the QR code
 5. For web: Run `make web` or press `w` in the terminal
 
 ### Development Commands
@@ -48,8 +36,8 @@ make doctor            # Check development environment
 ## Repository Structure
 
 ```
+package.json           # Project dependencies and scripts
 CLAUDE.md              # Claude Code context and rules
-replit.md              # Replit Agent context
 AGENTS.md              # Multi-agent behavior contract
 docs/
   README.md            # Documentation index
@@ -59,14 +47,14 @@ docs/
   ROADMAP.md           # Feature roadmap
   SYNC.md              # Notion sync workflow
   DECISIONS.md         # ADR index
-  initialization/      # Setup questionnaire
+  initialization/      # Setup questionnaire and answers
   adr/                 # Architecture Decision Records
   features/            # Per-feature documentation
 .claude/
   rules/               # Coding, documentation, and safety rules
   commands/            # Slash commands for common workflows
 .github/
-  workflows/           # CI/CD (documentation validation)
+  workflows/           # CI/CD (lint, type-check, tests)
   ISSUE_TEMPLATE/      # Bug and feature request templates
 ```
 

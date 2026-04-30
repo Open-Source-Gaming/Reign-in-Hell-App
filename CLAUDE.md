@@ -4,7 +4,7 @@ Cross-platform companion app for managing cabals, campaigns, and battles in the 
 
 ## Quick Start
 
-This project is **not initialized**. Run `/initialize-project` to answer the setup questionnaire and configure the template for your project.
+Run `make setup` to install dependencies, then `make start` to start the development server.
 
 ## Project Status
 
