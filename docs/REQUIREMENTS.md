@@ -7,7 +7,9 @@ Expected detail: Specific, testable requirements. Not vague goals.
 Related files: docs/ROADMAP.md, docs/ARCHITECTURE.md, docs/SYNC.md, docs/features/
 -->
 
-> **SCAFFOLDED**: This file contains the template structure. Fill it in during project initialization and keep it synchronized with the planning source of truth (Notion).
+**Target Users**: Reign in Hell tabletop players running games solo or at the table.
+
+**Business Goal**: Reduce paper/spreadsheet overhead. Track cabal rosters, soul currency, demon advancement, and per-battle state so play stays fast and persistent.
 
 ## Functional Requirements
 

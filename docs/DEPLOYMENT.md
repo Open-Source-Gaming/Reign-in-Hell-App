@@ -7,38 +7,60 @@ Expected detail: Enough to deploy the project from scratch and troubleshoot depl
 Related files: docs/ENVIRONMENT.md, docs/MIGRATIONS.md, docs/ARCHITECTURE.md
 -->
 
-> **SCAFFOLDED**: Fill in during project initialization when the deployment target is chosen.
+## Deployment Targets
 
-## When to Fill This In
-
-- When the deployment target is chosen during initialization.
-- When CI/CD pipelines are configured.
-- When deployment procedures are established.
-
-## Deployment Target
-
-| Setting                      | Value                   |
-| ---------------------------- | ----------------------- |
-| Platform                     | [TBD at initialization] |
-| Region                       | [TBD]                   |
-| Environment URL (dev)        | [TBD]                   |
-| Environment URL (staging)    | [TBD]                   |
-| Environment URL (production) | [TBD]                   |
+| Platform        | Purpose    | URL                           | Deployment Method    |
+| --------------- | ---------- | ----------------------------- | -------------------- |
+| Cloudflare Pages| Web app    | TBD (after first deployment) | GitHub Actions (auto)|
+| App Store       | iOS app    | N/A                          | EAS + manual submit  |
+| Play Store      | Android app| N/A                          | EAS + manual submit  |
+| Expo Go         | Development| Expo development server      | Local (`make start`) |
 
 ## Deployment Process
 
-### Automated (CI/CD)
+### Web App (Cloudflare Pages)
 
+**Automated via GitHub Actions:**
 ```bash
-# Describe the CI/CD pipeline trigger and steps
-# [TBD]
+# Triggered automatically on push to main branch
+# 1. Build web version: make build-web
+# 2. Deploy to Cloudflare Pages via wrangler
+# 3. Environment: production
 ```
 
-### Manual
+**Manual deployment:**
+```bash
+make deploy-web
+# Note: Manual deployment runs through GitHub Actions
+```
+
+### Mobile Apps (EAS)
+
+**iOS Build:**
+```bash
+make eas-build-ios          # Build for iOS
+make eas-submit-ios         # Submit to App Store (manual approval needed)
+```
+
+**Android Build:**
+```bash
+make eas-build-android      # Build for Android  
+make eas-submit-android     # Submit to Play Store (manual approval needed)
+```
+
+**Over-the-Air Updates:**
+```bash
+make eas-update             # Push update to existing installs
+```
+
+### Local Development
 
 ```bash
-# Step-by-step manual deployment commands
-# [TBD]
+make setup                  # One-time environment setup
+make start                  # Start development server
+make ios                    # iOS simulator
+make android                # Android emulator  
+make web                    # Web browser
 ```
 
 ## Pre-Deployment Checklist

@@ -11,17 +11,26 @@ Related files: docs/REQUIREMENTS.md, docs/DECISIONS.md, docs/features/
 
 ## System Overview
 
-Describe the system in one paragraph. What does it do? What problem does it solve?
+**Reign in Hell Companion** is a cross-platform mobile and web app for managing cabals (demon groups), campaigns, and battles in the Reign in Hell tabletop miniature game. 
+
+**Business Goal**: Reduce paper/spreadsheet overhead by providing digital tools for cabal rosters, soul currency management, demon advancement, and per-battle state tracking so gameplay stays fast and persistent.
+
+**Target Users**: Reign in Hell tabletop players running games solo or at the table.
 
 ## Component Diagram
 
-Use a text-based diagram (Mermaid or ASCII) showing the major components and how they connect.
+Cross-platform mobile app architecture using Expo (React Native + React Native Web):
 
 ```
-[Component A] --> [Component B] --> [Component C]
-                                        |
-                                        v
-                                 [External Service]
+[Mobile App (iOS/Android)] ━━━━━━━━━┓
+                                   ┃
+[Web App (Browser)]        ━━━━━━━━━┫━━━ [Shared React Native Codebase]
+                                   ┃          ┃
+[Desktop (Future)]         ━━━━━━━━━┛          ┃
+                                              ┃
+                                              v
+                                    [Local SQLite Database]
+                                    [Expo SQLite + Drizzle ORM]
 ```
 
 ## Components
