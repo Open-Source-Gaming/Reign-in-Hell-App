@@ -18,8 +18,8 @@ setup: ## Initial project setup (run once after git clone)
 	@which pnpm > /dev/null || (echo "Installing pnpm..." && npm install -g pnpm)
 	@echo "Installing dependencies..."
 	@pnpm install
-	@echo "Installing Expo CLI..."
-	@pnpm add -g @expo/cli
+	@echo "Checking Expo CLI availability..."
+	@pnpm dlx expo --version > /dev/null
 	@echo "Setup complete! Run 'make start' to begin development."
 
 .PHONY: install
