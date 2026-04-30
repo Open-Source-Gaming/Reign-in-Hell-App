@@ -23,7 +23,8 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A1.1: Project name
 
-- **Answer**: Reign in Hell Companion
+- **Answer**: reign-in-hell-companion
+- **Display name**: Reign in Hell Companion
 - **Propagated to**:
   - [x] `README.md`
   - [x] `CLAUDE.md`
