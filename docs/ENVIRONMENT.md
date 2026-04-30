@@ -7,15 +7,46 @@ Expected detail: Every env var with its purpose, format, and whether it is requi
 Related files: docs/DEPLOYMENT.md, docs/INTEGRATIONS.md
 -->
 
-> **SCAFFOLDED**: Fill in during project initialization when the tech stack and deployment target are chosen.
+## Runtime Requirements
+
+- **Node.js**: 20 LTS or later
+- **Package Manager**: pnpm 
+- **Database**: SQLite (via expo-sqlite, runs locally)
+- **Mobile Development**: Expo CLI and Expo Go app (for live preview)
 
 ## Local Setup
 
 1. Clone the repository.
-2. Copy `.env.example` to `.env`.
-3. Fill in the required values (see table below).
-4. Install dependencies: [TBD at initialization].
-5. Start the development server: [TBD at initialization].
+2. Run the setup command: `make setup`
+   - This installs pnpm, dependencies, and Expo CLI
+3. Start development: `make start`
+4. For mobile: Download Expo Go app and scan the QR code
+5. For web: Run `make web` or press `w` in the terminal
+
+### Available Make Commands
+
+Run `make help` to see all available commands. Key workflows:
+
+**Development:**
+- `make start` - Start Expo development server
+- `make ios` / `make android` / `make web` - Platform-specific development
+- `make doctor` - Check development environment health
+
+**Code Quality:**
+- `make format` - Format code with Prettier
+- `make lint` - Check code with ESLint  
+- `make type-check` - Run TypeScript checks
+- `make check-all` - Run all quality checks
+
+**Testing:**
+- `make test` - Run all tests
+- `make test-coverage` - Run tests with coverage
+- `make test-domain` - Test portable domain logic only
+
+**Building & Deployment:**
+- `make build-web` - Build web version
+- `make eas-build-ios` / `make eas-build-android` - Native builds
+- `make deploy-web` - Deploy to Cloudflare Pages
 
 ## Development Tools
 

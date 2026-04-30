@@ -19,7 +19,7 @@ Related files: CONTRIBUTING.md, .claude/rules/safety.md
 
 Do not report security vulnerabilities through public GitHub issues.
 
-Instead, report them by emailing **[security contact email]**.
+Instead, report them by creating a private GitHub Security Advisory or contacting **@danielcomeau** on GitHub.
 
 Include:
 

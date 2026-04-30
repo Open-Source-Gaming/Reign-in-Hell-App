@@ -23,21 +23,21 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A1.1: Project name
 
-- **Answer**: [Not yet answered]
+- **Answer**: Reign in Hell Companion
 - **Propagated to**:
-  - [ ] `README.md`
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `package.json` (or equivalent)
+  - [x] `README.md`
+  - [x] `CLAUDE.md`
+  - [ ] `replit.md` (removed - not using Replit)
+  - [x] `docs/ARCHITECTURE.md`
+  - [ ] `package.json` (will be created later when setting up Expo)
 
 ### A1.2: One-sentence description
 
-- **Answer**: [Not yet answered]
+- **Answer**: Cross-platform companion app for managing cabals, campaigns, and battles in the Reign in Hell tabletop game.
 - **Propagated to**:
-  - [ ] `README.md`
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
+  - [x] `README.md` 
+  - [x] `CLAUDE.md`
+  - [ ] `replit.md` (removed - not using Replit)
 
 ---
 
@@ -45,18 +45,18 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A2.1: Project type
 
-- **Answer**: [Not yet answered]
+- **Answer**: Mobile app (with web build) — single repo for v1, monorepo on the roadmap
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `docs/ARCHITECTURE.md`
+  - [x] `CLAUDE.md`
+  - [ ] `replit.md` (removed - not using Replit)
+  - [x] `docs/ARCHITECTURE.md`
 
 ### A2.2: Monorepo structure
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Skipped - not a monorepo in v1]
 - **Propagated to**:
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `CLAUDE.md`
+  - [x] `docs/ARCHITECTURE.md` (not applicable)
+  - [x] `CLAUDE.md` (not applicable)
 
 ---
 
@@ -64,17 +64,17 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A3.1: Target users
 
-- **Answer**: [Not yet answered]
+- **Answer**: Reign in Hell tabletop players running games solo or at the table
 - **Propagated to**:
-  - [ ] `docs/REQUIREMENTS.md`
-  - [ ] `README.md`
+  - [x] `docs/REQUIREMENTS.md`
+  - [x] `README.md`
 
 ### A3.2: Business goal
 
-- **Answer**: [Not yet answered]
+- **Answer**: Reduce paper/spreadsheet overhead. Track cabal rosters, soul currency, demon advancement, and per-battle state so play stays fast and persistent.
 - **Propagated to**:
-  - [ ] `docs/REQUIREMENTS.md`
-  - [ ] `docs/ARCHITECTURE.md`
+  - [x] `docs/REQUIREMENTS.md`
+  - [x] `docs/ARCHITECTURE.md`
 
 ---
 
@@ -82,35 +82,35 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A4.1: Primary language
 
-- **Answer**: [Not yet answered]
+- **Answer**: TypeScript
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `.claude/rules/code-style.md`
+  - [x] `CLAUDE.md`
+  - [ ] `replit.md` (removed)
+  - [ ] `.claude/rules/code-style.md` (will update during formatting setup)
 
 ### A4.2: Framework
 
-- **Answer**: [Not yet answered]
+- **Answer**: React Native + Expo (Expo Router for navigation, React Native Web for browser build)
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `docs/ARCHITECTURE.md`
+  - [x] `CLAUDE.md`
+  - [ ] `replit.md` (removed)
+  - [x] `docs/ARCHITECTURE.md`
 
 ### A4.3: Runtime
 
-- **Answer**: [Not yet answered]
+- **Answer**: Node.js 20 LTS
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `docs/ENVIRONMENT.md`
+  - [x] `CLAUDE.md` (implicitly in tech stack)
+  - [ ] `replit.md` (removed)
+  - [x] `docs/ENVIRONMENT.md`
 
 ### A4.4: Database
 
-- **Answer**: [Not yet answered]
+- **Answer**: SQLite (local, via `expo-sqlite` + Drizzle ORM) with sync-ready schema (UUID PKs, `created_at`/`updated_at`/`deleted_at`/`version`) — no remote DB in v1
 - **Propagated to**:
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `docs/MIGRATIONS.md`
-  - [ ] `docs/ENVIRONMENT.md`
+  - [x] `docs/ARCHITECTURE.md` (implicitly in component diagram)
+  - [ ] `docs/MIGRATIONS.md` (will mark as not applicable)
+  - [x] `docs/ENVIRONMENT.md` (implicitly mentioned SQLite)
 
 ---
 
@@ -118,29 +118,29 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A5.1: Package manager
 
-- **Answer**: [Not yet answered]
+- **Answer**: pnpm
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
-  - [ ] `docs/ENVIRONMENT.md`
+  - [x] `CLAUDE.md` (implicitly in tech stack)
+  - [ ] `replit.md` (removed)
+  - [x] `docs/ENVIRONMENT.md`
 
 ### A5.2: Test framework
 
-- **Answer**: [Not yet answered]
+- **Answer**: Vitest (domain/unit tests) + React Native Testing Library (component tests)
 - **Propagated to**:
   - [ ] `docs/TESTING.md`
   - [ ] `.claude/rules/testing.md`
 
 ### A5.3: Test file location
 
-- **Answer**: [Not yet answered]
+- **Answer**: Co-located (`*.test.ts` next to source)
 - **Propagated to**:
   - [ ] `docs/TESTING.md`
   - [ ] `.claude/rules/testing.md`
 
 ### A5.4: Coverage target
 
-- **Answer**: [Not yet answered]
+- **Answer**: 70% on `src/domain/` (the portable core); no hard target elsewhere
 - **Propagated to**:
   - [ ] `docs/TESTING.md`
 
@@ -150,15 +150,15 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A6.1: Deployment platform
 
-- **Answer**: [Not yet answered]
+- **Answer**: Cloudflare Pages (web build) + Expo EAS (native builds)
 - **Propagated to**:
   - [ ] `docs/DEPLOYMENT.md`
   - [ ] `docs/ENVIRONMENT.md`
-  - [ ] `replit.md`
+  - [ ] `replit.md` (removed)
 
 ### A6.2: CI/CD
 
-- **Answer**: [Not yet answered]
+- **Answer**: GitHub Actions
 - **Propagated to**:
   - [ ] `.github/workflows/`
   - [ ] `docs/DEPLOYMENT.md`
@@ -169,14 +169,14 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A7.1: Feature documentation level
 
-- **Answer**: [Not yet answered]
+- **Answer**: Standard (overview + requirements + tests per feature)
 - **Propagated to**:
   - [ ] `docs/features/README.md`
   - [ ] `docs/TAXONOMY.md`
 
 ### A7.2: Scaffolded files to prune
 
-- **Answer**: [Not yet answered]
+- **Answer**: Mark `docs/MIGRATIONS.md` as not applicable (local SQLite only), `docs/API.md` as not applicable (no backend API yet) — keep scaffolded
 - **Propagated to**:
   - [ ] Affected files (marked as "not applicable")
 
@@ -196,7 +196,7 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A9.1: Planning tool
 
-- **Answer**: [Not yet answered]
+- **Answer**: GitHub Issues primary; Notion for higher-level planning (you have the MCP wired)
 - **Propagated to**:
   - [ ] `docs/SYNC.md`
   - [ ] `CLAUDE.md`
@@ -204,14 +204,14 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A9.2: Notion workspace
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Will be configured later when needed]
 - **Propagated to**:
-  - [ ] `.mcp.json`
+  - [ ] `.mcp.json` (placeholder is acceptable for now)
   - [ ] `docs/SYNC.md`
 
 ### A9.3: Sync frequency
 
-- **Answer**: [Not yet answered]
+- **Answer**: On-demand (`/sync-notion`)
 - **Propagated to**:
   - [ ] `docs/SYNC.md`
 
@@ -221,22 +221,22 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A10.1: Primary AI tool
 
-- **Answer**: [Not yet answered]
+- **Answer**: Claude Code only
 - **Propagated to**:
   - [ ] `CLAUDE.md`
-  - [ ] `replit.md`
+  - [ ] `replit.md` (removed)
   - [ ] `AGENTS.md`
 
 ### A10.2: Approval requirements
 
-- **Answer**: [Not yet answered]
+- **Answer**: Defaults (commits, pushes, destructive changes require approval)
 - **Propagated to**:
   - [ ] `.claude/rules/safety.md`
   - [ ] `CLAUDE.md`
 
 ### A10.3: Allowed autonomous actions
 
-- **Answer**: [Not yet answered]
+- **Answer**: Read files, run tests, lint, format, file and code analysis
 - **Propagated to**:
   - [ ] `.claude/settings.json`
   - [ ] `CLAUDE.md`
@@ -247,24 +247,24 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A11.1: Writing rules
 
-- **Answer**: [Not yet answered]
+- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans
 - **Propagated to**:
-  - [ ] `.claude/rules/safety.md`
-  - [ ] `.claude/rules/code-style.md`
+  - [x] `.claude/rules/safety.md` (no changes needed)
+  - [x] `.claude/rules/code-style.md` (no changes needed)
 
 ### A11.2: Coding rules
 
-- **Answer**: [Not yet answered]
+- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans  
 - **Propagated to**:
-  - [ ] `.claude/rules/code-style.md`
-  - [ ] `CLAUDE.md`
+  - [x] `.claude/rules/code-style.md` (no changes needed)
+  - [x] `CLAUDE.md` (no changes needed)
 
 ### A11.3: Banned patterns
 
-- **Answer**: [Not yet answered]
+- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans
 - **Propagated to**:
-  - [ ] `.claude/rules/code-style.md`
-  - [ ] `.claude/rules/safety.md`
+  - [x] `.claude/rules/code-style.md` (no changes needed)
+  - [x] `.claude/rules/safety.md` (no changes needed)
 
 ---
 
@@ -272,52 +272,52 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A12.1: Web app for content display
 
-- **Answer**: [Not yet answered]
+- **Answer**: Yes (web build of the companion is part of v1)
 - **Propagated to**:
-  - [ ] `CLAUDE.md`
-  - [ ] `docs/ARCHITECTURE.md`
+  - [x] `CLAUDE.md` (implicitly in project description)
+  - [x] `docs/ARCHITECTURE.md` (web build mentioned)
 
 ### A12.2: Static site generation
 
-- **Answer**: [Not yet answered]
+- **Answer**: No — companion web is a dynamic SPA via React Native Web, not a static site. The future Astro landing page is a separate Section-12 pass post-monorepo migration.
 - **Propagated to**:
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `CLAUDE.md`
+  - [x] `docs/ARCHITECTURE.md` (SPA architecture explained)
+  - [x] `CLAUDE.md` (not relevant for v1)
 
 ### A12.3: SSG choice
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Skipped — no SSG in v1]
 - **Propagated to**:
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `CLAUDE.md`
-  - [ ] `package.json` (or equivalent)
+  - [x] `docs/ARCHITECTURE.md` (not applicable)
+  - [x] `CLAUDE.md` (not applicable)
+  - [x] `package.json` (not applicable - Expo setup)
 
 ### A12.4: Headless CMS
 
-- **Answer**: [Not yet answered]
+- **Answer**: None in v1
 - **Propagated to**:
-  - [ ] `docs/INTEGRATIONS.md`
-  - [ ] `docs/ARCHITECTURE.md`
-  - [ ] `CONTENT_TAXONOMY.md`
+  - [x] `docs/INTEGRATIONS.md` (not applicable)
+  - [x] `docs/ARCHITECTURE.md` (not applicable)
+  - [x] `CONTENT_TAXONOMY.md` (not applicable)
 
 ### A12.5: Production domain
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Skipped — no CMS in v1]
 - **Propagated to**:
-  - [ ] `wrangler.toml`
-  - [ ] `ghost/.env`
-  - [ ] `docs/DEPLOYMENT.md`
+  - [x] `wrangler.toml` (not applicable)
+  - [x] `ghost/.env` (not applicable)
+  - [x] `docs/DEPLOYMENT.md` (not applicable)
 
 ### A12.6: Docker container prefix
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Skipped — no CMS in v1]
 - **Propagated to**:
-  - [ ] `docker-compose.yml`
-  - [ ] `Makefile`
+  - [x] `docker-compose.yml` (not applicable)
+  - [x] `Makefile` (not applicable)
 
 ### A12.7: Cloudflare Tunnel and Cloudflare Access for Ghost
 
-- **Answer**: [Not yet answered]
+- **Answer**: [Skipped — no CMS in v1]
 - **Propagated to**:
-  - [ ] `worker.ts`
-  - [ ] `config-templates/ghost-cms/secrets.md` (reference)
+  - [x] `worker.ts` (not applicable)
+  - [x] `config-templates/ghost-cms/secrets.md` (not applicable)

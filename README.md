@@ -1,10 +1,18 @@
-# Project Name
+# Reign in Hell Companion
 
-> One-sentence description. [Set during initialization.]
+Cross-platform companion app for managing cabals, campaigns, and battles in the Reign in Hell tabletop game.
+
+**For**: Tabletop players running Reign in Hell games at the table or solo.
 
 ## Status
 
-This project was created from a repository template optimized for Claude Code and Replit. It is **not yet initialized**. Run `/initialize-project` in Claude Code to configure it for your specific project.
+**Initialized** - Ready for development. See `docs/initialization/COMPLETION_CHECKLIST.md` for details.
+
+## Important Notice
+
+This is an **unofficial fan tool** for the Reign in Hell tabletop miniature game. It is not affiliated with or endorsed by Snarling Badger Studios. To use this companion app effectively, you must own the official Reign in Hell rulebook by Adam Loper and Vince Venturella.
+
+**Attribution**: Reign in Hell is published by Snarling Badger Studios. This companion app is created by fans, for fans, and respects the intellectual property of the original creators.
 
 ## What This Template Provides
 
@@ -20,11 +28,22 @@ This project was created from a repository template optimized for Claude Code an
 
 ## Quick Start
 
-1. Use this template to create a new repository.
-2. Open the repository in Claude Code or Replit.
-3. Run `/initialize-project` to answer the setup questionnaire.
-4. The questionnaire configures your tech stack, deployment, documentation granularity, and agent preferences.
-5. Start building.
+1. Clone this repository
+2. Run `make setup` to install dependencies and tools
+3. Run `make start` to start the development server
+4. For mobile: Download Expo Go app and scan the QR code
+5. For web: Run `make web` or press `w` in the terminal
+
+### Development Commands
+
+```bash
+make help              # Show all available commands
+make start             # Start development server
+make test              # Run tests
+make format            # Format code  
+make check-all         # Run all quality checks
+make doctor            # Check development environment
+```
 
 ## Repository Structure
 

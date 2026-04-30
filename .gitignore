@@ -55,3 +55,22 @@ build/
 .parcel-cache/
 .next/
 .nuxt/
+
+# Proprietary references (keep directory structure, ignore content)
+references/*
+!references/README.md
+
+# Temporary file drops (keep directory structure, ignore content)
+tmp/*
+!tmp/.gitkeep
+
+# Expo and React Native
+.expo/
+expo-env.d.ts
+ios/
+android/
+.eas/
+
+# Additional file types (proprietary content protection)
+*.pdf
+*.epub

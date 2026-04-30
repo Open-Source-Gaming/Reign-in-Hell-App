@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Reign in Hell Companion
 
-This is a repository template optimized for Claude Code. It uses markdown-driven development with a strict documentation taxonomy, initialization questionnaires, ADRs, and bidirectional Notion planning sync.
+Cross-platform companion app for managing cabals, campaigns, and battles in the Reign in Hell tabletop game.
 
 ## Quick Start
 
@@ -8,12 +8,13 @@ This project is **not initialized**. Run `/initialize-project` to answer the set
 
 ## Project Status
 
-- **Initialized**: No. See `docs/initialization/COMPLETION_CHECKLIST.md`.
-- **Project type**: [Set during initialization]
-- **Tech stack**: [Set during initialization]
-- **Planning source**: [Set during initialization]
-- **Web app / SSG**: [Set during initialization, optional]
-- **CMS**: [Set during initialization, optional]
+- **Initialized**: Yes. See `docs/initialization/COMPLETION_CHECKLIST.md`.
+- **Project type**: Mobile app (cross-platform)
+- **Tech stack**: TypeScript, React Native + Expo, SQLite + Drizzle ORM
+- **Planning source**: GitHub Issues + Notion (on-demand sync)
+- **Primary AI tool**: Claude Code
+- **Web app / SSG**: React Native Web (SPA, not static)
+- **CMS**: None in v1
 
 ## Non-Negotiable Rules
 
