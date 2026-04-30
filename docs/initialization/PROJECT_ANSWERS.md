@@ -45,7 +45,7 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A2.1: Project type
 
-- **Answer**: Mobile app (with web build) — single repo for v1, monorepo on the roadmap
+- **Answer**: Mobile app (with web build), single repo for v1, monorepo on the roadmap
 - **Propagated to**:
   - [x] `CLAUDE.md`
   - [ ] `replit.md` (removed - not using Replit)
@@ -106,7 +106,7 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A4.4: Database
 
-- **Answer**: SQLite (local, via `expo-sqlite` + Drizzle ORM) with sync-ready schema (UUID PKs, `created_at`/`updated_at`/`deleted_at`/`version`) — no remote DB in v1
+- **Answer**: SQLite (local, via `expo-sqlite` + Drizzle ORM) with sync-ready schema (UUID PKs, `created_at`/`updated_at`/`deleted_at`/`version`). No remote DB in v1
 - **Propagated to**:
   - [x] `docs/ARCHITECTURE.md` (implicitly in component diagram)
   - [ ] `docs/MIGRATIONS.md` (will mark as not applicable)
@@ -176,7 +176,7 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A7.2: Scaffolded files to prune
 
-- **Answer**: Mark `docs/MIGRATIONS.md` as not applicable (local SQLite only), `docs/API.md` as not applicable (no backend API yet) — keep scaffolded
+- **Answer**: Mark `docs/MIGRATIONS.md` as not applicable (local SQLite only), `docs/API.md` as not applicable (no backend API yet). Keep scaffolded
 - **Propagated to**:
   - [ ] Affected files (marked as "not applicable")
 
@@ -247,21 +247,21 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A11.1: Writing rules
 
-- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans
+- **Answer**: Defaults from existing `.claude/rules/` (no extra writing/coding bans)
 - **Propagated to**:
   - [x] `.claude/rules/safety.md` (no changes needed)
   - [x] `.claude/rules/code-style.md` (no changes needed)
 
 ### A11.2: Coding rules
 
-- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans  
+- **Answer**: Defaults from existing `.claude/rules/` (no extra writing/coding bans)  
 - **Propagated to**:
   - [x] `.claude/rules/code-style.md` (no changes needed)
   - [x] `CLAUDE.md` (no changes needed)
 
 ### A11.3: Banned patterns
 
-- **Answer**: Defaults from existing `.claude/rules/` — no extra writing/coding bans
+- **Answer**: Defaults from existing `.claude/rules/` (no extra writing/coding bans)
 - **Propagated to**:
   - [x] `.claude/rules/code-style.md` (no changes needed)
   - [x] `.claude/rules/safety.md` (no changes needed)
@@ -279,14 +279,14 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A12.2: Static site generation
 
-- **Answer**: No — companion web is a dynamic SPA via React Native Web, not a static site. The future Astro landing page is a separate Section-12 pass post-monorepo migration.
+- **Answer**: No. Companion web is a dynamic SPA via React Native Web, not a static site. The future Astro landing page is a separate Section-12 pass post-monorepo migration.
 - **Propagated to**:
   - [x] `docs/ARCHITECTURE.md` (SPA architecture explained)
   - [x] `CLAUDE.md` (not relevant for v1)
 
 ### A12.3: SSG choice
 
-- **Answer**: [Skipped — no SSG in v1]
+- **Answer**: [Skipped (no SSG in v1)]
 - **Propagated to**:
   - [x] `docs/ARCHITECTURE.md` (not applicable)
   - [x] `CLAUDE.md` (not applicable)
@@ -302,7 +302,7 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A12.5: Production domain
 
-- **Answer**: [Skipped — no CMS in v1]
+- **Answer**: [Skipped (no CMS in v1)]
 - **Propagated to**:
   - [x] `wrangler.toml` (not applicable)
   - [x] `ghost/.env` (not applicable)
@@ -310,14 +310,14 @@ Do not mark a question as complete in `INITIAL_QUESTIONS.md` until all destinati
 
 ### A12.6: Docker container prefix
 
-- **Answer**: [Skipped — no CMS in v1]
+- **Answer**: [Skipped (no CMS in v1)]
 - **Propagated to**:
   - [x] `docker-compose.yml` (not applicable)
   - [x] `Makefile` (not applicable)
 
 ### A12.7: Cloudflare Tunnel and Cloudflare Access for Ghost
 
-- **Answer**: [Skipped — no CMS in v1]
+- **Answer**: [Skipped (no CMS in v1)]
 - **Propagated to**:
   - [x] `worker.ts` (not applicable)
   - [x] `config-templates/ghost-cms/secrets.md` (not applicable)
